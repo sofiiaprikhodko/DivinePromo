@@ -1,0 +1,334 @@
+﻿@section Styles {
+    <style>
+        .home-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #12080b 30%, #481e2c 70%, #6c2d42 100%);
+            padding: 2rem 0 0 0;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ffffff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'Cinzel', serif;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: titleGlow 2s infinite ease-in-out;
+        }
+
+        @@keyframes titleGlow {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(196, 104, 135, 0.3), 0 0 60px rgba(196, 104, 135, 0.2);
+            }
+
+            50% {
+                opacity: 0.9;
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 50px rgba(196, 104, 135, 0.5), 0 0 70px rgba(196, 104, 135, 0.3);
+            }
+        }
+
+        .masonry-grid {
+            column-count: 4;
+            column-gap: 2rem; 
+            margin: 0 2rem; 
+            max-width: none; 
+        }
+
+        .grid-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+            .grid-item:hover {
+                transform: translateY(-5px);
+                border-color: #c46887;
+                box-shadow: 0 10px 25px rgba(196, 104, 135, 0.3);
+            }
+
+        .photo-item {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .quote-item {
+            padding: 2.5rem;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #e0e0e0;
+            background: #000000;
+            backdrop-filter: blur(15px);
+            border: 1px solid #000000;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+        }
+
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 співвідношення */
+            height: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+
+            .video-embed:hover {
+                transform: scale(1.02);
+                box-shadow: 0 10px 25px rgba(196, 104, 135, 0.3);
+            }
+
+            .video-embed iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+        /* Адаптивність */
+        @@media (max-width: 1200px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+                margin: 0 1rem;
+                column-gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .quote-item {
+                padding: 2rem;
+                font-size: 1.1rem;
+            }
+
+            .video-item {
+                font-size: 1.1rem;
+                height: 180px;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .masonry-grid {
+                column-count: 1;
+                margin: 0 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+}
+
+<div class="home-container">
+    <h1 class="section-title">Divine Gallery</h1>
+
+    <div class="masonry-grid">
+        <!-- Фотографії з папки wwwroot/images/gallery -->
+        <div class="grid-item">
+            <img src="/images/gallery/photo1.jpg" class="photo-item" alt="Stray Kids Photo 1">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo2.jpg" class="photo-item" alt="Stray Kids Photo 2">
+        </div>
+
+        <!-- Перша цитата -->
+        <div class="grid-item">
+            <div class="quote-item">
+                "We are Stray Kids!"
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo3.jpg" class="photo-item" alt="Stray Kids Photo 3">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo4.jpg" class="photo-item" alt="Stray Kids Photo 4">
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo5.jpg" class="photo-item" alt="Stray Kids Photo 5">
+        </div>
+
+        <!-- Перше відео у другому ряду -->
+        <div class="grid-item">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/s24NkdR36vM?si=e8DJcasQb-OfM0MZ"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo6.jpg" class="photo-item" alt="Stray Kids Photo 6">
+        </div>
+
+        <!-- Друга цитата -->
+        <div class="grid-item">
+            <div class="quote-item">
+                "Stray Kids everywhere all around the world"
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo7.jpg" class="photo-item" alt="Stray Kids Photo 7">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo8.jpg" class="photo-item" alt="Stray Kids Photo 8">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo9.jpg" class="photo-item" alt="Stray Kids Photo 9">
+        </div>
+
+        <!-- Третя цитата -->
+        <div class="grid-item">
+            <div class="quote-item">
+                "신선놀음"
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo10.jpg" class="photo-item" alt="Stray Kids Photo 10">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo11.jpg" class="photo-item" alt="Stray Kids Photo 11">
+        </div>
+
+        <!-- Друге відео нижче -->
+        <div class="grid-item">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/bLzbg8g1qqo?si=IUxY-9K5NIp6_t-4"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo12.jpg" class="photo-item" alt="Stray Kids Photo 12">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo13.jpg" class="photo-item" alt="Stray Kids Photo 13">
+        </div>
+
+        <!-- Четверта цитата -->
+        <div class="grid-item">
+            <div class="quote-item">
+                "DO IT"
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo14.jpg" class="photo-item" alt="Stray Kids Photo 14">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo15.jpg" class="photo-item" alt="Stray Kids Photo 15">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo16.jpg" class="photo-item" alt="Stray Kids Photo 16">
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo17.jpg" class="photo-item" alt="Stray Kids Photo 17">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo18.jpg" class="photo-item" alt="Stray Kids Photo 18">
+        </div>
+
+        <!-- П'ята цитата -->
+        <div class="grid-item">
+            <div class="quote-item">
+                "You Make Stray Kids Stay"
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <img src="/images/gallery/photo19.jpg" class="photo-item" alt="Stray Kids Photo 19">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo20.jpg" class="photo-item" alt="Stray Kids Photo 20">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo21.jpg" class="photo-item" alt="Stray Kids Photo 21">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo22.jpg" class="photo-item" alt="Stray Kids Photo 22">
+        </div>
+        <div class="grid-item">
+            <img src="/images/gallery/photo23.jpg" class="photo-item" alt="Stray Kids Photo 23">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Плавний паралакс ефект для фону
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to('.home-container', {
+            backgroundPosition: '50% 100%',
+            ease: "none",
+            scrollTrigger: {
+                trigger: '.home-container',
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Прості hover анімації для елементів
+        gsap.utils.toArray('.grid-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(item, {
+                    duration: 0.3,
+                    scale: 1.02,
+                    ease: "power2.out"
+                });
+            });
+
+            item.addEventListener('mouseleave', () => {
+                gsap.to(item, {
+                    duration: 0.3,
+                    scale: 1,
+                    ease: "power2.out"
+                });
+            });
+        });
+    </script>
+}

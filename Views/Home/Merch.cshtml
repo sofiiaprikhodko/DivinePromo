@@ -1,0 +1,250 @@
+﻿@section Styles {
+    <style>
+        .merch-container {
+            padding: 2rem 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/images/backgrounds/merch-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ffffff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'Cinzel', serif;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: titleGlow 2s infinite ease-in-out;
+        }
+
+        @@keyframes titleGlow {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(196, 104, 135, 0.3), 0 0 60px rgba(196, 104, 135, 0.2);
+            }
+
+            50% {
+                opacity: 0.9;
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 50px rgba(196, 104, 135, 0.5), 0 0 70px rgba(196, 104, 135, 0.3);
+            }
+        }
+
+        .countdown {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+            .countdown h2 {
+                font-family: 'Cinzel', serif;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: #c46887;
+            }
+
+        #timer {
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(45deg, #e0e0e0, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .merch-item {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 1rem;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+            .merch-item:hover {
+                transform: translateY(-5px);
+                border-color: #c46887;
+            }
+
+        .merch-image {
+            width: 100%;
+            height: 200px;
+            background: #333;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .merch-name {
+            margin-bottom: 0.5rem;
+            color: #c46887;
+        }
+
+        .albums-section {
+            margin-top: 3rem;
+        }
+
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .album-item {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .album-image {
+            width: 100%;
+            height: 250px;
+            background: #333;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+    </style>
+}
+
+<div class="merch-container">
+    <div class="content-wrapper">
+        <h1 class="section-title">Divine Collection</h1>
+
+        <div class="countdown">
+            <h2>Pre-order Starts In</h2>
+            <div id="timer"></div>
+        </div>
+
+        <div class="merch-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Cinzel', serif; color: #c46887;">Member Merch</h2>
+            <div class="merch-grid">
+                <!-- Мерч для учасників -->
+                <div class="merch-item">
+                    <img src="/images/merch/chan.jpg" class="merch-image" alt="Jacket by Bang Chan">
+                    <div class="merch-name">JACKET by Bang Chan</div>
+                    <div class="merch-price">$89.99</div>
+                </div>
+                <div class="merch-item">
+                    <img src="/images/merch/leeknow.jpg" class="merch-image" alt="Keyring set by Lee Know">
+                    <div class="merch-name">KEYRING SET by Lee Know</div>
+                    <div class="merch-price">$29.99</div>
+                </div>
+                <div class="merch-item">
+                    <img src="/images/merch/changbin.jpg" class="merch-image" alt="Slides by Changbin">
+                    <div class="merch-name">SLIDES by Changbin</div>
+                    <div class="merch-price">$29.99</div>
+                </div>
+                <div class="merch-item">
+                    <img src="/images/merch/hyunjin.jpg" class="merch-image" alt="Necklace by Hyunjin">
+                    <div class="merch-name">NECKLACE by Hyunjin</div>
+                    <div class="merch-price">$25.99</div>
+                </div>
+                <div class="merch-item">
+                    <img src="/images/merch/han.jpg" class="merch-image" alt="BALL CAP by Han">
+                    <div class="merch-name">BALL CAP by Han</div>
+                    <div class="merch-price">$29.99</div>
+                </div>
+                <div class="merch-item">
+                    <img src="/images/merch/felix.jpg" class="merch-image" alt="BEADS STRAP by Felix">
+                    <div class="merch-name">BEADS STRAP by Felix</div>
+                    <div class="merch-price">$25.99</div>
+                </div>
+                <div class="merch-item">
+                    <img src="/images/merch/seungmin.jpg" class="merch-image" alt="PuppyM PLUSH by Seungmin">
+                    <div class="merch-name">PuppyM PLUSH by Seungmin</div>
+                    <div class="merch-price">$45.99</div>
+                </div>
+                <div class="merch-item">
+                    <img src="/images/merch/in.jpg" class="merch-image" alt="CARDHOLDER by I.N.">
+                    <div class="merch-name">CARDHOLDER by I.N.</div>
+                    <div class="merch-price">$20.99</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="albums-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Cinzel', serif; color: #c46887;">Albums</h2>
+            <div class="albums-grid">
+                <!-- Альбоми -->
+                <div class="album-item">
+                    <img src="/images/albums/version-a.jpg" class="album-image" alt="Divine Version A">
+                    <div class="album-name">DO IT A</div>
+                    <div class="album-price">$29.99</div>
+                </div>
+                <div class="album-item">
+                    <img src="/images/albums/version-b.jpg" class="album-image" alt="Divine Version B">
+                    <div class="album-name">DO IT B</div>
+                    <div class="album-price">$29.99</div>
+                </div>
+                <div class="album-item">
+                    <img src="/images/albums/version-c.jpg" class="album-image" alt="Divine Version C">
+                    <div class="album-name">DO IT Version C</div>
+                    <div class="album-price">$29.99</div>
+                </div>
+                <div class="album-item">
+                    <img src="/images/albums/version-d.jpg" class="album-image" alt="Limited Edition">
+                    <div class="album-name">Limited Edition</div>
+                    <div class="album-price">$39.99</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('December 2, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').innerHTML =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                document.getElementById('timer').innerHTML = "PRE-ORDER NOW!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+}

@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "Subscribe - Divine Collection";
+}
+
+@section Styles {
+    <style>
+        .subscribe-container {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/images/backgrounds/sub-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .subscribe-content {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid #c46887;
+            text-align: center;
+        }
+
+        .subscribe-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .subscribe-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .subscribe-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Cinzel', serif;
+            color: #c46887;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+            .form-input:focus {
+                outline: none;
+                border-color: #c46887;
+                box-shadow: 0 0 10px rgba(196, 104, 135, 0.3);
+            }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #c46887, #000000);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 8px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+            .submit-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(196, 104, 135, 0.4);
+            }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: white;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s ease;
+        }
+
+            .back-link:hover {
+                color: #c46887;
+                text-decoration: underline;
+            }
+    </style>
+}
+
+<div class="subscribe-container">
+    <div class="subscribe-content">
+        <h1 class="subscribe-title">Subscribe</h1>
+        <p class="subscribe-subtitle">Stay updated with Stray Kids news and events</p>
+
+        <form id="subscriptionForm" class="subscribe-form">
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input"
+                       placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Subscribe Now
+            </button>
+        </form>
+        <div id="alertContainer"></div>
+
+        <a href="/Home/Tour" class="back-link">← Back to Tour</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('subscriptionForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const alertContainer = document.getElementById('alertContainer');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Subscribing...';
+
+            try {
+                const response = await fetch('/Home/Subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert('Thank you for subscribing! You will be notified about upcoming events.', 'success');
+                    document.getElementById('subscriptionForm').reset();
+                } else {
+                    showAlert(result.message || 'Subscription failed. Please try again.', 'danger');
+                }
+            } catch (error) {
+                showAlert('An error occurred. Please try again later.', 'danger');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Subscribe Now';
+            }
+        });
+
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            alertContainer.innerHTML = '';
+            alertContainer.appendChild(alert);
+
+            setTimeout(() => {
+                alert.remove();
+            }, 30000);
+        }
+    </script>
+}

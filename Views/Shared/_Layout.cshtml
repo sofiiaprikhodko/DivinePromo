@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Divine Collection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100vw;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #c46887;
+            backdrop-filter: blur(10px); 
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+        }
+
+        .stray-kids-logo {
+            height: 30px; 
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+            .stray-kids-logo:hover {
+                transform: scale(1.05);
+            }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem; 
+        }
+
+            .nav-links a {
+                color: #e0e0e0;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 2px; 
+                font-family: 'Cinzel', serif;
+                font-size: 0.9rem;
+                position: relative;
+            }
+
+                .nav-links a:hover {
+                    color: #c46887;
+                }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-right: 1.5rem
+        }
+
+            .social-links a {
+                color: #e0e0e0;
+                font-size: 1.2rem;
+                transition: color 0.3s ease;
+            }
+
+                .social-links a:hover {
+                    color: #c46887;
+                }
+
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px; 
+            font-family: 'Cinzel', serif;
+        }
+    </style>
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="/Home/Home">Home</a> 
+                <a href="/">Merch</a> 
+                <a href="/Home/Tour">Tour</a>
+            </div>
+            <div class="logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Stray_Kids_Logo_White.png/2560px-Stray_Kids_Logo_White.png" alt="Stray Kids Logo" class="stray-kids-logo">
+            </div>
+            <div class="social-links">
+                <a href="https://app.fans/shop/StrayKids" target="_blank"><i class="fas fa-shopping-bag"></i></a>
+                <a href="https://x.com/Stray_Kids" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.youtube.com/c/StrayKids" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/realstraykids/#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

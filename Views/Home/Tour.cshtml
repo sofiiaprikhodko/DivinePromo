@@ -1,0 +1,156 @@
+﻿@section Styles {
+    <style>
+        .tour-container {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/backgrounds/tour-bg.jpg'); /* шлях до твоєї картинки */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .tour-content {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .no-events-text {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
+        }
+
+        .notification-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #e0e0e0;
+            margin-bottom: 3rem;
+            font-style: italic;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .follow-section {
+            margin-top: 4rem;
+        }
+
+        .follow-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #c46887;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .social-highlight {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+            .social-highlight a {
+                color: #ffffff;
+                font-size: 2rem;
+                transition: all 0.3s ease;
+                text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+            }
+
+                .social-highlight a:hover {
+                    color: #c46887;
+                    transform: scale(1.3) translateY(-5px);
+                    text-shadow: 0 5px 15px rgba(196, 104, 135, 0.4);
+                }
+
+        /* Анімація пульсації для тексту */
+        .pulse-text {
+            animation: textPulse 3s infinite ease-in-out;
+        }
+
+        @@keyframes textPulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+        }
+    </style>
+}
+
+<div class="tour-container">
+    <div class="tour-content">
+        <h1 class="no-events-text pulse-text">There are no upcoming events.</h1>
+        <p class="notification-text">Get notified when new events are announced in your area</p>
+
+        <div class="follow-section">
+            <a asp-controller="Home" asp-action="Subscribe" class="follow-title">
+                Follow Stray Kids
+            </a>
+            <div class="social-highlight">
+                <a href="https://app.fans/shop/StrayKids" target="_blank"><i class="fas fa-shopping-bag"></i></a>
+                <a href="https://x.com/Stray_Kids" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.youtube.com/c/StrayKids" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/realstraykids/#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Анімація появи тексту
+        gsap.from('.no-events-text', {
+            duration: 1.5,
+            y: 100,
+            opacity: 0,
+            ease: "power3.out"
+        });
+
+        gsap.from('.notification-text', {
+            duration: 1.5,
+            y: 80,
+            opacity: 0,
+            delay: 0.3,
+            ease: "power3.out"
+        });
+
+        gsap.from('.follow-section', {
+            duration: 1.5,
+            y: 60,
+            opacity: 0,
+            delay: 0.6,
+            ease: "power3.out"
+        });
+
+        // Плавний паралакс ефект для фону
+        gsap.to('.tour-container', {
+            backgroundPosition: '50% 100%',
+            ease: "none",
+            scrollTrigger: {
+                trigger: '.tour-container',
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    </script>
+}
