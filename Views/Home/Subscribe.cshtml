@@ -116,70 +116,18 @@
         <h1 class="subscribe-title">Subscribe</h1>
         <p class="subscribe-subtitle">Stay updated with Stray Kids news and events</p>
 
-        <form id="subscriptionForm" class="subscribe-form">
-            <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" id="email" name="email" class="form-input"
-                       placeholder="Enter your email" required>
-            </div>
-            <button type="submit" class="submit-btn" id="submitBtn">
-                Subscribe Now
-            </button>
-        </form>
-        <div id="alertContainer"></div>
+        <!-- React монтуватиме компонент сюди -->
+        <div id="subscribe-root"></div>
 
         <a href="/Home/Tour" class="back-link">← Back to Tour</a>
     </div>
 </div>
 
 @section Scripts {
-    <script>
-        document.getElementById('subscriptionForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+    <!-- React + ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 
-            const email = document.getElementById('email').value;
-            const submitBtn = document.getElementById('submitBtn');
-            const alertContainer = document.getElementById('alertContainer');
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Subscribing...';
-
-            try {
-                const response = await fetch('/Home/Subscribe', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: email })
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    showAlert('Thank you for subscribing! You will be notified about upcoming events.', 'success');
-                    document.getElementById('subscriptionForm').reset();
-                } else {
-                    showAlert(result.message || 'Subscription failed. Please try again.', 'danger');
-                }
-            } catch (error) {
-                showAlert('An error occurred. Please try again later.', 'danger');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Subscribe Now';
-            }
-        });
-
-        function showAlert(message, type) {
-            const alertContainer = document.getElementById('alertContainer');
-            const alert = document.createElement('div');
-            alert.className = `alert alert-${type}`;
-            alert.textContent = message;
-            alertContainer.innerHTML = '';
-            alertContainer.appendChild(alert);
-
-            setTimeout(() => {
-                alert.remove();
-            }, 30000);
-        }
-    </script>
+    <!-- Підключаємо React-код -->
+    <script src="/js/subscribe.jsx"></script>
 }
